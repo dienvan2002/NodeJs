@@ -1,7 +1,7 @@
 
 import { Router } from "express";
 import { body, validationResult, oneOf, check } from "express-validator";
-import { handleInputErrors } from "./handlers/middleware";
+import { handleInputErrors } from "./modules/middleware";
 import { createProduct, deleteProduct, getOneProduct, getProducts } from "./handlers/product";
 import { createUpdate, deleteUpdate, getOneUpdate, getUpdates, updateUpdate } from "./handlers/update";
 
@@ -64,4 +64,9 @@ router.put(
 );
 router.delete("/updatepoint/:id", (req, res) => {});
 
+router.use ((err, req, res, next) => {
+  console.log(err);
+  res.json({message: "in router handler"})
+  
+})
 export default router;
